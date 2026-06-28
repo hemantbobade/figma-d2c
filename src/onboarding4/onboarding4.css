@@ -1,0 +1,166 @@
+/* onboarding4.css
+ * ob4- prefix for all custom atoms in this flow.
+ */
+
+/* ── Fixed content-width containers ─────────────────────────────────────
+   SDS has no spacing tokens for frame max-widths (720px / 820px / 900px /
+   1180px). Raw px values are permitted here and only here per the SDS
+   Fixed Max-Width Policy. A single CSS custom property per width.
+   ─────────────────────────────────────────────────────────────────────── */
+:root {
+  --ob4-width-wide: 1180px;
+  --ob4-width-mid: 820px;
+  --ob4-width-narrow: 720px;
+  --ob4-width-hero: 900px;
+  --ob4-width-success: 800px;
+}
+
+.ob4-wide {
+  width: 100%;
+  max-width: var(--ob4-width-wide);
+  margin-inline: auto;
+}
+
+.ob4-mid {
+  width: 100%;
+  max-width: var(--ob4-width-mid);
+  margin-inline: auto;
+}
+
+.ob4-narrow {
+  width: 100%;
+  max-width: var(--ob4-width-narrow);
+  margin-inline: auto;
+}
+
+.ob4-hero-inner {
+  width: 100%;
+  max-width: var(--ob4-width-hero);
+  margin-inline: auto;
+}
+
+.ob4-success-inner {
+  width: 100%;
+  max-width: var(--ob4-width-success);
+  margin-inline: auto;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────
+   The header is sticky and has a bottom border separating it from content.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-header-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--sds-color-border-default-default);
+  background: var(--sds-color-background-default-default);
+}
+
+/* ── Step progress: active badge ─────────────────────────────────────────
+   Circular badge for the currently active step.
+   #0d6efd = Alpen brand blue — no SDS color token equivalent.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-badge-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background: #0d6efd;
+  border: 1px solid #0d6efd;
+  color: var(--sds-color-text-default-inverse);
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-small);
+  font-weight: var(--sds-typography-body-font-weight-regular);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Step progress: connector lines ──────────────────────────────────────
+   Thin 2px horizontal lines between step badges.
+   #16a34a = green for completed steps (matches scheme="positive" semantics).
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-line {
+  width: 32px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--sds-color-border-default-default);
+  flex-shrink: 0;
+}
+
+.ob4-line-done {
+  background: #16a34a; /* green done connector — no SDS success border token */
+}
+
+/* ── Welcome hero ────────────────────────────────────────────────────────
+   Subtle (#fafafa) background hero section on the welcome screen.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-hero {
+  background: var(--sds-color-background-default-subtle);
+}
+
+/* ── Success hero ────────────────────────────────────────────────────────
+   #e7f0ff = Alpen brand blue tint — no SDS background token equivalent.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-success-band {
+  background: #e7f0ff;
+}
+
+/* ── Inline info notice (address screen) ─────────────────────────────────
+   #e0f2fe = light blue brand tint — no SDS neutral token matches this hue.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-notice-info {
+  border-radius: var(--sds-size-radius-200);
+  background: #e0f2fe;
+  padding: var(--sds-size-space-400);
+}
+
+/* ── Inline neutral notice (identity screen) ─────────────────────────────
+   Uses the subtle background token (closest to #f5f5f5 design value).
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-notice-neutral {
+  border-radius: var(--sds-size-radius-200);
+  background: var(--sds-color-background-default-subtle);
+  padding: var(--sds-size-space-400);
+}
+
+/* ── Review summary row ──────────────────────────────────────────────────
+   Each row shows a label on the left and the value on the right.
+   The display:flex here is a genuine UI atom — it controls
+   label/value alignment that cannot be achieved with <Flex> props.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--sds-size-space-400);
+  align-items: flex-start;
+  padding-block: var(--sds-size-space-200);
+  width: 100%;
+}
+
+.ob4-summary-label {
+  min-width: 140px;
+  flex: 0 0 auto;
+  color: var(--sds-color-text-default-subtle);
+}
+
+/* ── Number circles on the success screen ────────────────────────────────
+   Circular numbered badges for the "What happens next" steps.
+   #e7f0ff / #0d6efd = Alpen brand colors — no SDS token equivalent.
+   ─────────────────────────────────────────────────────────────────────── */
+.ob4-num-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background: #e7f0ff;
+  color: #0d6efd;
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-small);
+  font-weight: var(--sds-typography-body-font-weight-regular);
+  line-height: 1;
+  flex-shrink: 0;
+}

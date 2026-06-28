@@ -1,0 +1,264 @@
+/*
+ * Alpen Bank Onboarding — Custom CSS
+ *
+ * All layout uses <Flex>, <Section> from SDS.
+ * This file ONLY adds:
+ *   1. Border overrides for header/footer (SDS Section variant doesn't support top/bottom only)
+ *   2. Center inner wrappers (max-width, margin:auto)
+ *   3. The Stepper component (no SDS equivalent)
+ *   4. Alpen Bank brand colours with no SDS token (#0d6efd, #e7f0ff, #e0f2fe) — annotated
+ *   5. The hero section background
+ *   6. Notice banners
+ *   7. Summary rows in the review step
+ */
+
+/* ──────────────────────────────────────────────────────────
+   Header / Footer border helpers
+   ────────────────────────────────────────────────────────── */
+.ob-nav-header {
+  border-bottom: 1px solid var(--sds-color-border-default-default);
+}
+
+.ob-nav-footer {
+  border-top: 1px solid var(--sds-color-border-default-default);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Content inner wrappers
+   (Section left/right is always space-600 via SDS; these add
+   a centred max-width constraint for the form content.)
+   ────────────────────────────────────────────────────────── */
+.ob-inner {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ob-inner-wide {
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ob-inner-xl {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Stepper  (SDS has no built-in stepper component)
+   ────────────────────────────────────────────────────────── */
+.ob-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-200);
+  padding-block: var(--sds-size-space-600);
+}
+
+.ob-stepper-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sds-size-space-200);
+}
+
+/* Active step badge — #0d6efd is Alpen Bank accent blue with no SDS token */
+.ob-step-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  flex-shrink: 0;
+  background-color: #0d6efd; /* Alpen Bank accent — no SDS token */
+  color: var(--sds-color-white-1000);
+  font-size: var(--sds-typography-body-size-small);
+  font-family: var(--sds-typography-body-font-family);
+  font-weight: var(--sds-typography-body-font-weight-regular);
+}
+
+/* ob-action-row: forces action row Flex to span full width.
+   Using a CSS class (not inline style) avoids overriding the Flex
+   component's internal CSS custom properties (--flex-align-*). */
+.ob-action-row {
+  width: 100%;
+}
+
+/* Step connector lines */
+.ob-connector {
+  width: 32px;
+  height: 2px;
+  border-radius: 1px;
+  flex-shrink: 0;
+  background-color: var(--sds-color-border-default-default);
+}
+
+.ob-connector-done {
+  background-color: var(--sds-color-background-positive-default);
+}
+
+/*
+  Stepper badge size normalisation
+  The SDS Tag uses font-size: body-medium (16px) + 8px vertical padding = 32px height.
+  The active step badge is 28px.  Override to body-small (14px) + 8px padding = 30px
+  so all badge types appear visually consistent.
+  Also prevent Tags from shrinking inside the flex row.
+*/
+.ob-stepper-row .tag {
+  flex-shrink: 0;
+  font-size: var(--sds-typography-body-size-small);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Hero section for Success screen
+   #e7f0ff is Alpen Bank brand tint — no SDS token
+   ────────────────────────────────────────────────────────── */
+.ob-hero-brand {
+  background-color: #e7f0ff; /* Alpen Bank brand tint — no SDS token */
+  padding-block: var(--sds-size-space-1600);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Inline notice banners
+   ────────────────────────────────────────────────────────── */
+/* Info notice — #e0f2fe is Alpen Bank info tint, no SDS token */
+.ob-notice-info {
+  background-color: #e0f2fe; /* Alpen Bank info tint — no SDS token */
+  border-radius: var(--sds-size-radius-200);
+  padding: var(--sds-size-space-400);
+}
+
+/* Secure / neutral notice */
+.ob-notice-secure {
+  background-color: var(--sds-color-background-default-secondary);
+  border-radius: var(--sds-size-radius-200);
+  padding: var(--sds-size-space-400);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Review & Confirm — section cards  (Step 5)
+   Plain bordered div matching Figma exactly:
+   border-radius 12px, 1px #e5e5e5 border, 24px padding,
+   8px gap between rows.
+   ────────────────────────────────────────────────────────── */
+.ob-review-card {
+  background: var(--sds-color-background-default-default);
+  border: 1px solid var(--sds-color-border-default-default);
+  border-radius: 12px; /* Figma: rounded-[12px], no SDS radius token matches */
+  padding: var(--sds-size-space-600);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-200); /* 8px between header and rows */
+}
+
+.ob-review-card-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-bottom: var(--sds-size-space-200);
+}
+
+/* Summary rows inside each review card */
+.ob-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  /* column-gap only (matches Figma gap-[0px_16px]) */
+  column-gap: var(--sds-size-space-400);
+  row-gap: 0;
+  align-items: baseline;
+  padding-block: var(--sds-size-space-200);
+  width: 100%;
+}
+
+.ob-summary-label {
+  min-width: 160px;
+  font: var(--sds-font-body-small);
+  color: var(--sds-color-text-default-secondary);
+  flex-shrink: 0;
+}
+
+.ob-summary-value {
+  font: var(--sds-font-body-strong);
+  color: var(--sds-color-text-default-default);
+  flex: 1;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Success screen — numbered step circles
+   #e7f0ff bg and #0d6efd text are Alpen Bank accents — no SDS tokens
+   ────────────────────────────────────────────────────────── */
+.ob-number-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  flex-shrink: 0;
+  background-color: #e7f0ff; /* Alpen Bank accent — no SDS token */
+}
+
+.ob-number-circle-text {
+  color: #0d6efd; /* Alpen Bank accent — no SDS token */
+  font-size: var(--sds-typography-body-size-small);
+  font-family: var(--sds-typography-body-font-family);
+  font-weight: var(--sds-typography-body-font-weight-regular);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Welcome — feature cards
+   ────────────────────────────────────────────────────────── */
+.ob-feature-card {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid var(--sds-color-border-default-default);
+  border-radius: var(--sds-size-radius-400);
+  padding: var(--sds-size-space-600);
+  background: var(--sds-color-background-default-default);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sds-size-space-400);
+}
+
+/* Icon inside feature cards — Alpen Bank accent colour */
+.ob-feature-icon {
+  color: #0d6efd; /* Alpen Bank accent — no SDS token */
+}
+
+/* ──────────────────────────────────────────────────────────
+   Required field asterisk
+   RAC sets data-required on the .field wrapper when isRequired is true
+   ────────────────────────────────────────────────────────── */
+.field[data-required] .label::after {
+  content: ' *';
+  color: var(--sds-color-text-default-error);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Notice banner icon
+   ────────────────────────────────────────────────────────── */
+.ob-notice-icon {
+  flex-shrink: 0;
+  color: var(--sds-color-text-default-default);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Success screen — large centred checkmark
+   ────────────────────────────────────────────────────────── */
+.ob-success-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sds-color-text-positive-default);
+}
+
+/* ──────────────────────────────────────────────────────────
+   Review — disclosure link indentation
+   ────────────────────────────────────────────────────────── */
+.ob-disclosure-link {
+  display: block;
+  padding-left: var(--sds-size-space-800);
+  margin-top: calc(-1 * var(--sds-size-space-100));
+  color: var(--sds-color-text-default-secondary);
+}

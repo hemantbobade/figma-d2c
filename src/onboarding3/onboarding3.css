@@ -1,0 +1,100 @@
+/* onboarding3.css — all values via CSS vars; exceptions documented inline. ob3- prefix. */
+
+/* ── Header ──────────────────────────────────────────────────── */
+.ob3-header-wrap {
+  border-bottom: 1px solid var(--sds-color-border-default-default);
+}
+
+/* ── Hero bands ──────────────────────────────────────────────── */
+.ob3-hero {
+  background: var(--sds-color-background-default-secondary);
+}
+.ob3-success-band {
+  background: #e7f0ff; /* Alpen brand tint — no SDS token */
+}
+
+/* ── Feature card (Welcome) ──────────────────────────────────── */
+.ob3-feature-card {
+  background: var(--sds-color-background-default-default);
+  border: 1px solid var(--sds-color-border-default-default);
+  border-radius: var(--sds-size-radius-300);
+  padding: var(--sds-size-space-600);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* ── Content limiters ────────────────────────────────────────── */
+.ob3-narrow { width: 100%; max-width: 720px; margin: 0 auto; }
+.ob3-wide   { width: 100%; max-width: 1180px; margin: 0 auto; }
+.ob3-mid    { width: 100%; max-width: 820px; margin: 0 auto; }
+
+/* ── Step progress ───────────────────────────────────────────── */
+.ob3-badge-active {
+  background: #0d6efd; /* Alpen brand blue — no SDS token */
+  border: 1px solid #0d6efd;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font: var(--sds-font-body-small);
+  color: #fff;
+}
+.ob3-line {
+  width: 32px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--sds-color-border-default-default);
+  flex-shrink: 0;
+}
+.ob3-line-done {
+  background: var(--sds-color-text-positive-primary);
+}
+
+/* ── Notice blocks ───────────────────────────────────────────── */
+.ob3-notice-info {
+  background: #e0f2fe; /* info blue tint — no SDS token */
+  border-radius: var(--sds-size-radius-200);
+  padding: var(--sds-size-space-400);
+}
+.ob3-notice-neutral {
+  background: var(--sds-color-background-default-secondary);
+  border-radius: var(--sds-size-radius-200);
+  padding: var(--sds-size-space-400);
+}
+
+/* ── Review card ─────────────────────────────────────────────── */
+.ob3-review-card {
+  background: var(--sds-color-background-default-default);
+  border: 1px solid var(--sds-color-border-default-default);
+  border-radius: var(--sds-size-radius-300);
+  padding: var(--sds-size-space-600);
+}
+
+/* ── Summary row ─────────────────────────────────────────────── */
+.ob3-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--sds-size-space-400);
+  padding-block: var(--sds-size-space-200);
+}
+.ob3-summary-label {
+  min-width: 160px;
+  color: var(--sds-color-text-default-secondary);
+}
+
+/* ── Success numbered circle ─────────────────────────────────── */
+.ob3-num-circle {
+  background: #e7f0ff; /* brand tint — no SDS token */
+  color: #0d6efd;     /* brand blue — no SDS token */
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font: var(--sds-font-body-small);
+}
