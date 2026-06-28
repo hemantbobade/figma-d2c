@@ -1,5 +1,50 @@
 # Simple Design System (alpha)
 
+## AI-Assisted Figma → Code Pipeline
+
+This fork extends the original SDS with a **GitHub Copilot agent pipeline** that converts Figma designs into SDS-compliant React code automatically — no manual translation needed.
+
+### What was added
+
+| Path | Purpose |
+|------|---------|
+| `.github/copilot-instructions.md` | Repo-level Copilot instructions: SDS component rules, import aliases, CSS token conventions, multi-screen file structure policy |
+| `.github/agents/figma-analyst.md` | **Agent 1** — Reads a Figma node via MCP and produces a structured design summary (layout, typography, spacing, annotations) |
+| `.github/agents/sds-architect.md` | **Agent 2** — Maps the design summary to concrete SDS primitives/compositions and produces a component plan |
+| `.github/agents/sds-developer.md` | **Agent 3** — Generates production-ready TSX + CSS from the component plan, following all SDS conventions |
+| `.github/agents/sds-compliance-checker.md` | **Agent 4** — Validates generated code against SDS rules (no hardcoded tokens, no custom layout CSS, correct imports); auto-fixes and retries up to 3× |
+| `.github/agents/figma-to-sds-orchestrator.md` | **Orchestrator** — Runs agents 1→4 in sequence from a single Figma URL, placing output in `src/examples/<screen>/` |
+| `.github/prompts/figma-fetch.prompt.md` | Reusable prompt for fetching design context from Figma MCP |
+| `.github/prompts/sds-checklist.prompt.md` | Reusable SDS compliance checklist prompt |
+
+### How to use
+
+1. Open **GitHub Copilot Chat** in VS Code and select the `figma-to-sds-orchestrator` agent mode
+2. Paste a Figma node URL and press Enter:
+   ```
+   https://www.figma.com/design/<fileKey>/...?node-id=XXXX-YYYY
+   ```
+3. The pipeline runs automatically — no confirmations between steps
+4. Output lands in `src/examples/<screen-name>/`
+
+### Generated examples
+
+The `src/onboarding4/` directory is a complete multi-screen onboarding flow (7 Figma nodes → 13 React files) produced entirely by this pipeline:
+
+```
+src/onboarding4/
+├── Onboarding4.tsx        ← orchestrator (steps 0–6)
+├── onboarding4.css        ← ob4- CSS atoms, all values via CSS tokens
+├── types.ts               ← shared FormData, ScreenProps, constants
+├── shared/                ← Header, Footer, StepProgress
+└── screens/               ← Welcome, PersonalInfo, Address, ProductPicker,
+                              IdentityCheck, ReviewConfirm, AccountCreated
+```
+
+Switch the active flow in `src/App.tsx` by changing `FLOW` to `"v1"` | `"v2"` | `"v3"` | `"v4"`.
+
+---
+
 Using Figma's [Code Connect](https://github.com/figma/code-connect).
 
 Simple Design System (SDS) is a base design system that shows how Figma’s Variables, Styles, Components, and Code Connect can be used alongside a React codebase to form a complete picture of a responsive web design system.
